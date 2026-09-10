@@ -1,0 +1,51 @@
+# ─── Dependencies ───────────────────────────────────────────
+node_modules/
+
+# ─── Build output ───────────────────────────────────────────
+dist/
+build/
+*.tsbuildinfo
+.vite/
+
+# ─── Env / secrets (keep .env.example tracked) ──────────────
+.env
+.env.*
+!.env.example
+
+# ─── Logs ───────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Tests / coverage ───────────────────────────────────────
+coverage/
+
+# ─── Python ─────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.Python
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+mlruns/
+
+# ─── Local planning / progress notes ────────────────────────
+WORKLOG.md
+PROGRESS.md
+
+# ─── Local data ─────────────────────────────────────────────
+data/local/*.parquet
+data/local/*.delta
+.databricks/
+
+# ─── Editor / OS ────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.idea/
+*.swp
+.claude/settings.local.json

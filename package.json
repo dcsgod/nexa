@@ -1,0 +1,26 @@
+{
+  "name": "nexa",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Databricks Semantic Ontology & Explainable AI Platform",
+  "workspaces": [
+    "apps/web",
+    "services/api"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w services/api\" \"npm run dev -w apps/web\"",
+    "dev:api": "npm run dev -w services/api",
+    "dev:web": "npm run dev -w apps/web",
+    "dev:ai": "cd ai && uvicorn nexa_ai.service:app --reload --port 8100",
+    "build": "npm run build -w services/api && npm run build -w apps/web",
+    "lint": "npm run lint -w services/api && npm run lint -w apps/web",
+    "typecheck": "npm run typecheck -w services/api && npm run typecheck -w apps/web",
+    "test": "npm run test -w services/api && npm run test -w apps/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

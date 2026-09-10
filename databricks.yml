@@ -1,0 +1,47 @@
+# Databricks Asset Bundle for Nexa (spec §13 Deployment: Databricks Apps + Jobs).
+# Mock mode needs none of this; it targets a real workspace for live mode.
+bundle:
+  name: nexa
+
+variables:
+  catalog:
+    description: Unity Catalog to scan / store ontology in
+    default: retail
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: ${DATABRICKS_HOST}
+
+resources:
+  jobs:
+    nexa_discovery:
+      name: "[nexa] technical discovery"
+      tasks:
+        - task_key: catalog_scan
+          notebook_task:
+            notebook_path: ./jobs/catalog_scan/run.py
+        - task_key: lineage
+          depends_on: [{ task_key: catalog_scan }]
+          notebook_task:
+            notebook_path: ./jobs/lineage/run.py
+        - task_key: profiling
+          depends_on: [{ task_key: lineage }]
+          notebook_task:
+            notebook_path: ./jobs/profiling/run.py
+        - task_key: ontology_build
+          depends_on: [{ task_key: profiling }]
+          notebook_task:
+            notebook_path: ./jobs/ontology_build/run.py
+
+    nexa_drift_detection:
+      name: "[nexa] drift detection"
+      schedule:
+        quartz_cron_expression: "0 0 * * * ?"
+        timezone_id: UTC
+      tasks:
+        - task_key: drift
+          notebook_task:
+            notebook_path: ./jobs/drift_detection/run.py
