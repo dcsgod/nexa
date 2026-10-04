@@ -1,4 +1,6 @@
-# Nexa — Databricks Semantic Ontology & Explainable AI Platform
+# Nexa — Databricks Semantic Layer, Knowledge Graph & Explainable AI Platform
+
+**Nexa** is an open-source **Databricks semantic layer and enterprise knowledge graph platform** for building governed AI semantics from Unity Catalog. It discovers Lakehouse structure, builds a machine-grounded technical knowledge graph, maps business concepts and metrics, explains AI decisions with evidence, detects schema drift, and compiles business intent into governed Genie agents.
 
 An enterprise **Semantic Intelligence Platform for Databricks**: it discovers the
 technical structure of a Lakehouse, builds a machine-grounded **Technical
